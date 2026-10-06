@@ -15,7 +15,11 @@ builder.Services.AddScoped<IBottlesRepository, BottlesRepositoryDatabaseEF>();
 // OpenAPI
 builder.Services.AddOpenApi();
 
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 // Ensure the local database is created
 using (var scope = app.Services.CreateScope())
@@ -23,13 +27,13 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<BottlesDbContext>();
     db.Database.EnsureCreated();
 }
-
+/*
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
+*/
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

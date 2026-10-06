@@ -43,14 +43,9 @@ jobs:
       with:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-    - name: Azure Login
-      uses: azure/login@v2
-      with:
-        client-id: ${{ vars.RESTbottle220261006101827_CLIENT_ID_0CD9 }}
-        tenant-id: ${{ vars.RESTbottle220261006101827_TENANT_ID_0CD9 }}
-        subscription-id: ${{ vars.RESTbottle220261006101827_SUBSCRIPTION_ID_0CD9 }}
+  
     - name: Deploy to Azure WebApp
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v3
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{secrets.Lasse}}
